@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Sandwich Order</title>
+</head>
+<body>
+<h1>Sandwich Orders</h1>
+<ul>
+  <li th:each="order : ${orders}">
+    <strong th:text="${order.breadType.getDisplayName()}"></strong> with
+    <strong th:text="${order.fillingType.getDisplayName()}"></strong>,
+    Size: <strong th:text="${order.sizeType.getDisplayName()}"></strong>
+  </li>
+</ul>
+<a th:href="@{/order}">Place another order</a>
+</body>
+</html>

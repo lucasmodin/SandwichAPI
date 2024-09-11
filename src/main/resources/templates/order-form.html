@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sandwich Order</title>
+</head>
+<body>
+        <form action="#" th:action="@{/order}" th:object="${sandwichOrder}" method="post">
+            <label for="breadType">Bread Type:</label>
+            <select id="breadType" name="breadType" th:field="*{breadType}">
+                <option th:each="bread : ${breads}" th:value="${bread}" th:text="${bread.displayName}">Bread Type</option>
+            </select>
+            <br><br>
+
+            <label for="fillingType">Filling type:</label>
+            <select id="fillingType" name="fillingType" th:field="*{fillingType}">
+                <option th:each="filling : ${fillings}" th:value="${filling}" th:text="${filling.displayName}">Filling type</option>
+            </select>
+            <br><br>
+
+            <label for="sizeType">Size Type</label>
+            <select id="sizeType" name="sizeType" th:field="*{sizeType}">
+                <option th:each="size : ${sizes}" th:value="${size}" th:text ="${size.displayName}">Size type</option>
+            </select>
+            <br><br>
+            <button type="submit">Place Order</button>
+        </form>
+
+
+
+</body>
+</html>
