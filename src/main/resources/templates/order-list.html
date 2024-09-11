@@ -9,8 +9,9 @@
 <ul>
   <li th:each="order : ${orders}">
     <strong th:text="${order.breadType.getDisplayName()}"></strong> with
-    <strong th:text="${order.fillingType.getDisplayName()}"></strong>,
+    <strong th:text="${order.fillingType.getDisplayName()}"></strong>
     Size: <strong th:text="${order.sizeType.getDisplayName()}"></strong>
+    <a class="edit-link" th:href="@{/order/edit/{id}(id=${order.orderId})}">Edit</a>
   </li>
 </ul>
 <a th:href="@{/order}">Place another order</a>

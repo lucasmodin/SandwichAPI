@@ -4,6 +4,7 @@ import com.example.sandwichformsapi.repository.SandwichRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class SandwichService {
@@ -19,6 +20,10 @@ public class SandwichService {
 
     public SandwichOrder placeOrder(SandwichOrder sandwichOrder) {
         return sandwichRepository.placeOrder( sandwichOrder );
+    }
+
+    public SandwichOrder updateOrder(UUID id) {
+        return sandwichRepository.getOrderById(id);
     }
 
 

@@ -5,12 +5,10 @@ import com.example.sandwichformsapi.model.*;
 import com.example.sandwichformsapi.service.SandwichService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("")
@@ -41,6 +39,20 @@ public class SandwichController {
     public String showOrders(Model model) {
         model.addAttribute("orders", sandwichService.sandwichList());
         return "order-list";
+    }
+
+    @GetMapping("/order/edit/{id}")
+    public String editOrder(@PathVariable UUID id, Model model) throws IllegalAccessException {
+        SandwichOrder sandwichOrder = sandwichService.updateOrder(id);
+        if (sandwichOrder == null) {
+            throw new IllegalAccessException("invalid order id");
+        }
+
+        model.addAttribute("sandwichOrder", sandwichOrder);
+        model.addAttribute("breads", Bread.values());
+        model.addAttribute("fillings", Filling.values());
+        model.addAttribute("sizes", Size.values());
+        return "order-form";
     }
 
 }
